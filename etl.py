@@ -7,6 +7,23 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
+    '''
+    Parameters
+    ----------
+    cur : cursor object
+        The cursor of current postgresql connection.
+    filepath : string
+        contains the local path the folder which contains the json files.
+    
+    Return
+    ------
+    /
+    
+    Objective
+    ---------
+    Ingests song data of Sparkify into PostgreSQL database.
+    
+    '''
     # open song file
     df = pd.read_json(filepath, typ='series')
 
@@ -20,6 +37,22 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    '''
+    Parameters
+    ----------
+    cur : cursor object
+        The cursor of current postgresql connection.
+    filepath : string
+        contains the local path the folder which contains the json files.
+    
+    Return
+    ------
+    /
+    
+    Objective
+    ---------
+    Ingests user action log data of Sparkify into PostgreSQL database.
+    '''
     # open log file
     df = pd.read_json(filepath, lines=True)
 
@@ -67,6 +100,23 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    '''
+    Parameters
+    ----------
+    cur : cursor object
+        The cursor of current PostgreSQL connection.
+    conn : connection object
+        The connection object of current PostgreSQL connection.
+    func : Function object
+        Executes the submitted function.
+    Return
+    ------
+    /
+    
+    Objective
+    ---------
+    Processes all submitted data objects within the defined functions.
+    '''
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
